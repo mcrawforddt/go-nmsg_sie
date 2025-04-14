@@ -11,7 +11,7 @@ Provides definitions for message types from sie-nmsg for use with the go-nmsg li
 
 %global godocs          README.md
 
-Name:           %{goname}
+Name:           go-nmsg_sie
 Release:        1%{?dist}
 Summary:        SIE Message Module for go-nmsg
 
@@ -22,10 +22,10 @@ Source0:        %{gosource}
 %description
 %{common_description}
 
-%package -n devel
+%package -n %{goname}-devel
 Summary:	%{summary}
 BuildArch:  noarch
-%description -n devel
+%description -n %{goname}-devel
 %{common_description}
 
 %prep
@@ -57,6 +57,6 @@ sort -u -o devel.file-list devel.file-list
 %endif
 %endif
 
-%files -n devel -f devel.file-list
+%files -n %{goname}-devel -f devel.file-list
 
 %changelog
