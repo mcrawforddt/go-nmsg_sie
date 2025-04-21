@@ -1,46 +1,35 @@
 %global debug_package %{nil}
-
 # https://github.com/farsightsec/go-nmsg_sie
 %global goipath         github.com/farsightsec/go-nmsg_sie
-Version:                0.1.1
-
-%gometa
-
-%global common_description %{expand:
-Provides definitions for message types from sie-nmsg for use with the go-nmsg library.}
-
-%global godocs          README.md
 
 Name:           go-nmsg_sie
+Version:        0.1.1
 Release:        1%{?dist}
 Summary:        SIE Message Module for go-nmsg
+
+%gometa
 
 License:        MPLv2.0
 URL:            %{gourl}
 Source0:        %{gosource}
 
+%global common_description %{expand:
+Provides definitions for message types from sie-nmsg for use with the go-nmsg library.}
+%global godocs  README.md
+
 %description
 %{common_description}
 
 %package -n %{goname}-devel
-Summary:	%{summary}
-BuildArch:  noarch
+Summary:	    %{summary}
+BuildArch:      noarch
 %description -n %{goname}-devel
 %{common_description}
 
 %prep
 %setup -q
 
-#%generate_buildrequires
-#%go_generate_buildrequires
-
-%build
-mkdir -p %{gobuilddir}/src/%{goipath}
-rmdir %{gobuilddir}/src/%{goipath}
-ln -s $PWD %{gobuilddir}/src/%{goipath}
-export GO111MODULE=off
-export GOPATH=/usr/share/gocode:%{gobuilddir}
-
+%install
 find .
 for file in $(find . -iname "*.go" \! -iname "*_test.go" \! -iname "main.go" ) ; do
     echo "%%dir %%{gopath}/src/%%{goipath}/$(dirname $file)" >> devel.file-list
