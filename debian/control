@@ -8,6 +8,7 @@ Build-Depends:
  dh-golang,
  golang-any,
  golang-github-farsightsec-go-nmsg-dev,
+ golang-github-pebbe-zmq4-dev,
  golang-google-protobuf-dev,
 Standards-Version: 4.5.1
 Homepage: https://www.farsightsecurity.com
